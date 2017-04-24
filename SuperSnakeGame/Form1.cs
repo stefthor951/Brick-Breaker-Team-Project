@@ -13,6 +13,8 @@ namespace BrickBreaker
 {
     public partial class Form1 : Form
     {
+        // add a global value here
+
         public Form1()
         {
             InitializeComponent();
