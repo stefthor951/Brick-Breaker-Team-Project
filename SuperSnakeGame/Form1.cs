@@ -14,6 +14,7 @@ namespace BrickBreaker
     public partial class Form1 : Form
     {
         // add a global value here
+        // add a new comment
 
         public Form1()
         {
