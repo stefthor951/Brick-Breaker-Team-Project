@@ -12,7 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
-
+/// <summary>
+/// stefan andrekovic
+/// </summary>
 namespace BrickBreaker.Screens
 {
     public partial class GameScreen : UserControl
