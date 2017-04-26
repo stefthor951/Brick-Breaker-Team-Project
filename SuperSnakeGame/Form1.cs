@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrickBreaker.Screens;
-
+/// <summary>
+/// stefan andrekovic
+/// </summary>
 namespace BrickBreaker
 {
     public partial class Form1 : Form
