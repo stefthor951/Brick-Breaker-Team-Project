@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Lake
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,6 @@ namespace BrickBreaker
     {
         // add a global value here
         // add a new comment
-        //asdkfjaklsdfj
 
         //test comment
 
