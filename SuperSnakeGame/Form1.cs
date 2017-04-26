@@ -10,6 +10,16 @@ using System.Windows.Forms;
 using BrickBreaker.Screens;
 /// <summary>
 /// stefan andrekovic
+/// 
+/// powerups
+///     long paddle
+///     multiball
+///     backup floor
+///     lives
+///     
+/// powerdowns(?)
+///     brick enhancer
+///     
 /// </summary>
 namespace BrickBreaker
 {
