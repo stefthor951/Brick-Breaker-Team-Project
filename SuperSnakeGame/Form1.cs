@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Stefan Thorburn
+//Copy of brick breaker
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
