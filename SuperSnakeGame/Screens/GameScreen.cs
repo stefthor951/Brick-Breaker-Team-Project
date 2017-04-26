@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using BrickBreaker.Screens;
 
 namespace BrickBreaker.Screens
 {
@@ -222,6 +223,8 @@ namespace BrickBreaker.Screens
             
             // Draws balls
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+
+            
         }
     }
 }
