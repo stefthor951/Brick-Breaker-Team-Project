@@ -15,7 +15,9 @@ namespace BrickBreaker
     {
         // add a global value here
         // add a new comment
+
         //test comment
+
 
         public Form1()
         {
@@ -28,7 +30,7 @@ namespace BrickBreaker
             MenuScreen ps = new MenuScreen();
             this.Controls.Add(ps);
 
-            ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) / 2);
+            ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) /2);
         }
     }
 }
