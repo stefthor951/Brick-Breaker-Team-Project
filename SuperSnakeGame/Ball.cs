@@ -61,16 +61,23 @@ namespace BrickBreaker
             {
                 if (y + size >= p.y)
                 {
-                    // If the ball 
                     if ((x) < p.x && (y + size) > p.y)
                     {
                         xSpeed = -Math.Abs(xSpeed);
                         ySpeed = Math.Abs(ySpeed);
+
+                        //corrects paddle sticking glitch
+                        if (xSpeed >= 0)
+                            xSpeed = -Math.Abs(xSpeed);
                     }
                     else if (x + size > (p.x + p.width) && (y + size) > p.y)
                     {
                         xSpeed = Math.Abs(xSpeed);
                         ySpeed = Math.Abs(ySpeed);
+
+                        //corrects paddle sticking glitch
+                        if (xSpeed <= 0)
+                            xSpeed = Math.Abs(xSpeed);
                     }
                     else
                     {
