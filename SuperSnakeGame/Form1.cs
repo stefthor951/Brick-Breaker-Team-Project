@@ -18,6 +18,7 @@ using BrickBreaker.Screens;
 ///  magnet
 /// strongball
 /// another comment   
+/// another comment again
 /// </summary>
 namespace BrickBreaker
 {
