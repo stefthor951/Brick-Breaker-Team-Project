@@ -7,6 +7,9 @@ using System.Drawing;
 using BrickBreaker.Screens;
 using System.Windows.Forms;
 //2017-04-26
+
+//test comment
+
 namespace BrickBreaker
 {
     public class Ball
@@ -69,6 +72,8 @@ namespace BrickBreaker
                         //corrects paddle sticking glitch
                         if (xSpeed >= 0)
                             xSpeed = -Math.Abs(xSpeed);
+                        if (ySpeed <= 0)
+                            ySpeed = Math.Abs(ySpeed);
                     }
                     else if (x + size > (p.x + p.width) && (y + size) > p.y)
                     {
@@ -78,6 +83,8 @@ namespace BrickBreaker
                         //corrects paddle sticking glitch
                         if (xSpeed <= 0)
                             xSpeed = Math.Abs(xSpeed);
+                        if (ySpeed <= 0)
+                            ySpeed = Math.Abs(ySpeed);
                     }
                     else
                     {
