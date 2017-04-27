@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using BrickBreaker;
+using BrickBreaker.Screens;
 
 
 namespace SuperSnakeGame.Screens
@@ -253,6 +254,32 @@ namespace SuperSnakeGame.Screens
 
         }
 
+        public void OnEnd()
+        {
+            // Goes to the game over screen
+            Form form = this.FindForm();
+            MenuScreen ps = new MenuScreen();
+
+            ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
+
+            form.Controls.Add(ps);
+            form.Controls.Remove(this);
+        }
+
+        public void GameScreen_Paint(object sender, PaintEventArgs e)
+        {
+            // Draws paddle
+            e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
+
+            // Draws blocks
+            foreach (Block b in blocks)
+            {
+                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+            }
+
+            // Draws balls
+            e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+        }
 
     }
 }
