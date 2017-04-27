@@ -95,7 +95,7 @@ namespace SuperSnakeGame.Screens
             // start the game engine loop
             gameTimer.Enabled = true;
         }
-
+        //TODO change to work for 2p
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             // Move the paddle
