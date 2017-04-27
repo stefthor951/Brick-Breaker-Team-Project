@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using BrickBreaker.Screens;
 using System.Windows.Forms;
-
+//2017-04-26
 namespace BrickBreaker
 {
     public class Ball
@@ -89,18 +89,30 @@ namespace BrickBreaker
         {
             // Collision with left wall
             if (x <= 0)
-            {
+            {   
                 xSpeed *= -1;
+
+                //corrects wall sticking glitch
+                if (xSpeed < 0)
+                    xSpeed = Math.Abs(xSpeed); 
             }
             // Collision with right wall
             if (x >= (UC.Width - size))
-            {
+            {             
                 xSpeed *= -1;
+
+                //corrects wall sticking glitch
+                if (xSpeed > 0)
+                    xSpeed = -Math.Abs(xSpeed); 
             }
             // Collision with top wall
             if (y <= 2)
-            {
+            {   
                 ySpeed *= -1;
+
+                //corrects wall sticking glitch
+                if (ySpeed < 0)
+                    ySpeed = Math.Abs(ySpeed); 
             }
         }
 

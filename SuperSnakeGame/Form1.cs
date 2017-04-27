@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Lake
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrickBreaker.Screens;
-
+/// <summary>
+/// stefan andrekovic
+/// 
+/// powerups
+///     long paddle
+///     multiball
+///     backup floor
+///     lives
+///     
+/// powerdowns(?)
+///     brick enhancer
+///     
+/// </summary>
 namespace BrickBreaker
 {
     public partial class Form1 : Form
@@ -16,7 +29,7 @@ namespace BrickBreaker
         // add a global value here
         // add a new comment
 
-        //test comment
+        //test comment 
 
 
         public Form1()
