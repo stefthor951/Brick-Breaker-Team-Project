@@ -70,7 +70,7 @@ namespace BrickBreaker
                     else if (x + size > (p.x + p.width) && (y + size) > p.y)
                     {
                         xSpeed = Math.Abs(xSpeed);
-                        ySpeed = -Math.Abs(ySpeed);
+                        ySpeed = Math.Abs(ySpeed);
                     }
                     else
                     {

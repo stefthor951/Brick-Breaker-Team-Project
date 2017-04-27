@@ -39,6 +39,8 @@ namespace BrickBreaker.Screens
 
         #endregion
 
+        //checkpoint
+
         public GameScreen()
         {
             InitializeComponent();
