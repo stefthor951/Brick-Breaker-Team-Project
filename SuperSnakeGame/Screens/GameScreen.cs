@@ -135,8 +135,6 @@ namespace BrickBreaker.Screens
                     break;
             }
 
-            //added by daniel
-            //player 2 button releases
             switch (e.KeyCode)
             {
                 case Keys.A:
@@ -182,7 +180,7 @@ namespace BrickBreaker.Screens
             ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown);
 
             // Check if ball has collided with any blocks
-            foreach (Block b in blocks)
+            foreach (Block b in blocks) 
             {
                 if (ball.BlockCollision(b))
                 {
