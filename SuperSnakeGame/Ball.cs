@@ -93,7 +93,8 @@ namespace BrickBreaker
                 xSpeed *= -1;
 
                 //corrects wall sticking glitch
-                if (xSpeed < 0) { xSpeed = Math.Abs(xSpeed); }
+                if (xSpeed < 0)
+                    xSpeed = Math.Abs(xSpeed); 
             }
             // Collision with right wall
             if (x >= (UC.Width - size))
@@ -101,7 +102,8 @@ namespace BrickBreaker
                 xSpeed *= -1;
 
                 //corrects wall sticking glitch
-                if (xSpeed > 0) { xSpeed = -Math.Abs(xSpeed); }
+                if (xSpeed > 0)
+                    xSpeed = -Math.Abs(xSpeed); 
             }
             // Collision with top wall
             if (y <= 2)
@@ -109,7 +111,8 @@ namespace BrickBreaker
                 ySpeed *= -1;
 
                 //corrects wall sticking glitch
-                if (ySpeed < 0) { ySpeed = Math.Abs(ySpeed); }
+                if (ySpeed < 0)
+                    ySpeed = Math.Abs(ySpeed); 
             }
         }
 

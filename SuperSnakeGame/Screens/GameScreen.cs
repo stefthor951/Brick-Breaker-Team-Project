@@ -162,8 +162,11 @@ namespace BrickBreaker.Screens
             foreach (Block b in blocks)
             {
                 if (ball.BlockCollision(b))
-                {
-                    blocks.Remove(b);
+                {   
+                    //decreases struck block hp and removes blocks with hp 0
+                    b.hp--;
+                    if (b.hp == 0)
+                        blocks.Remove(b);
 
                     if (blocks.Count == 0)
                     {
