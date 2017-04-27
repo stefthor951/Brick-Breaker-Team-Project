@@ -9,6 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrickBreaker.Screens;
 
+/// <summary>
+///  Long paddle 
+///  More balls
+///  Backup floor
+///  additional life
+///  double point
+///  magnet
+/// strongball
+/// 
+/// </summary>
 namespace BrickBreaker
 {
     public partial class Form1 : Form
