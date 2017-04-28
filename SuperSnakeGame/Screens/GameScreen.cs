@@ -12,12 +12,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
-
+/// <summary>
+/// stefan andrekovic
+/// </summary>
 namespace BrickBreaker.Screens
 {
     public partial class GameScreen : UserControl
     {
         #region global values
+
+        // Creates powerup list
+        List<PowerUp> powerUps = new List<PowerUp>();
+        List<PowerUp> activePowerUps = new List<PowerUp>();
 
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown, escapeDown;
@@ -36,7 +42,7 @@ namespace BrickBreaker.Screens
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
-
+        SolidBrush powerupBrush = new SolidBrush(Color.Green);
         #endregion
 
         //checkpoint
@@ -200,6 +206,12 @@ namespace BrickBreaker.Screens
             // Moves ball
             ball.Move();
 
+            // Moves powerups
+            MovePowerups(powerUps);
+
+            // Check for collision with powerups and paddle
+            CollidePowerUps(paddle);
+
             // Check for collision with top and side walls
             ball.WallCollision(this);
 
@@ -215,6 +227,8 @@ namespace BrickBreaker.Screens
                     b.hp--;
                     if (b.hp == 0)
                         blocks.Remove(b);
+
+                    GeneratePowerUp(b.x, b.y);
 
                     if (blocks.Count == 0)
                     {
@@ -270,9 +284,53 @@ namespace BrickBreaker.Screens
             {
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
+
+            DrawPowerups(e);
             
             // Draws balls
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
         }
+
+        #region Stefan and Jack's Powerup Methods
+        public void GeneratePowerUp(int brickX, int brickY)
+        {
+            Random n = new Random();
+
+            if (n.Next(0, 1) == 0)
+            {
+                PowerUp p = new PowerUp(brickX, brickY, 3, n.Next(0, 7));
+                powerUps.Add(p);
+            }
+        }
+
+        public void MovePowerups(List<PowerUp> powerUps)
+        {
+            foreach(PowerUp p in powerUps)
+            {
+                p.Move(paddle);
+            }
+        }
+
+        public void DrawPowerups(PaintEventArgs e)
+        {
+            foreach (PowerUp p in powerUps)
+            {
+                p.DrawPowerUp(powerupBrush, e);
+            }
+        }
+
+        public void CollidePowerUps(Paddle paddle)
+        {
+            foreach (PowerUp p in powerUps)
+            {
+                if (p.Collision(paddle) == true)
+                {
+                    powerUps.Remove(p);
+                    activePowerUps.Add(p);
+                    break;
+                }
+            }
+        }
+        #endregion
     }
 }
