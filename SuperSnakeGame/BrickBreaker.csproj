@@ -69,7 +69,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Paddle.cs" />
-    <Compile Include="PowerUp.cs" />
     <Compile Include="PauseScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -99,7 +98,6 @@
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\PowerUp.cs" />
-    <Compile Include="Screens\PowerUps.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
