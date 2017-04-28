@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperSnakeGame
 {
-    class PowerUp
+    class PowerUps
     {
-      
     }
 }

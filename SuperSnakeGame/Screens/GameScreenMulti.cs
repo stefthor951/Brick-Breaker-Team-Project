@@ -1,8 +1,4 @@
-﻿/*  Created by: Steven HL
- *  Project: Brick Breaker
- *  Date: Tuesday, April 4th
- */ 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -12,21 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
-/// <summary>
-/// stefan andrekovic
-/// </summary>
-namespace BrickBreaker.Screens
+using BrickBreaker;
+using BrickBreaker.Screens;
+
+
+namespace SuperSnakeGame.Screens
 {
-    public partial class GameScreen : UserControl
+    public partial class GameScreenMulti : UserControl//TODO copy and arrange code
     {
+        //added by daniel
+        //player2 button control keys
+        Boolean aKeyDown, sKeyDown, dKeyDown, wKeyDown, qKeyDown;
+
         #region global values
 
-        // Creates powerup list
-        List<PowerUp> powerUps = new List<PowerUp>();
-        List<PowerUp> activePowerUps = new List<PowerUp>();
-
         //player1 button control keys - DO NOT CHANGE
-        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown, escapeDown;
+        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
 
         // Game values
         int lives, ticksSinceHit;
@@ -42,15 +39,20 @@ namespace BrickBreaker.Screens
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
-        SolidBrush powerupBrush = new SolidBrush(Color.Green);
+
         #endregion
 
-        //checkpoint
-
-        public GameScreen()
+        public GameScreenMulti()
         {
             InitializeComponent();
             OnStart();
+        }
+
+        public void daniel()
+        {
+            //added by daniel
+            //set player 2 button presses to false
+            aKeyDown = sKeyDown = dKeyDown = wKeyDown = false;
         }
 
         public void OnStart()
@@ -58,8 +60,8 @@ namespace BrickBreaker.Screens
             //set life counter
             lives = 3;
 
-            //sets ticks since paddle hit to initialize at zero
-            ticksSinceHit = 100;
+            //initializes ticks since hit counter
+            ticksSinceHit = 10;
 
             //set all button presses to false.
             leftArrowDown = downArrowDown = rightArrowDown = upArrowDown = false;
@@ -96,101 +98,7 @@ namespace BrickBreaker.Screens
             // start the game engine loop
             gameTimer.Enabled = true;
         }
-
-        private void GameScreen_KeyUp(object sender, KeyEventArgs e)
-        {
-            //player 1 button releases
-            switch (e.KeyCode)
-            {
-                case Keys.Left:
-                    leftArrowDown = false;
-                    break;
-                case Keys.Down:
-                    downArrowDown = false;
-                    break;
-                case Keys.Right:
-                    rightArrowDown = false;
-                    break;
-                case Keys.Up:
-                    upArrowDown = false;
-                    break;
-                case Keys.Space:
-                    spaceDown = false;
-                    break;
-                case Keys.Escape:
-                    escapeDown = false;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            //player 1 button presses
-            switch (e.KeyCode)
-            {
-                case Keys.Left:
-                    leftArrowDown = true;
-                    break;
-                case Keys.Down:
-                    downArrowDown = true;
-                    break;
-                case Keys.Right:
-                    rightArrowDown = true;
-                    break;
-                case Keys.Up:
-                    upArrowDown = true;
-                    break;
-                case Keys.Space:
-                    spaceDown = true;
-                    break;
-                case Keys.Escape:
-                    escapeDown = true;
-                    manuel();
-                    break;
-                default:
-                    break;
-            }
-
-            switch (e.KeyCode)
-            {
-                case Keys.A:
-                    leftArrowDown = false;
-                    break;
-                case Keys.S:
-                    downArrowDown = false;
-                    break;
-                case Keys.D:
-                    rightArrowDown = false;
-                    break;
-                case Keys.W:
-                    upArrowDown = false;
-                    break;
-                case Keys.Q:
-                    spaceDown = false;
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-        public void manuel()
-        {
-            if (escapeDown == true)
-            {
-                gameTimer.Stop();
-
-                Form f = this.FindForm();
-                f.Controls.Remove(this);
-
-                PauseScreen ps = new PauseScreen();
-                f.Controls.Add(ps);
-                ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) / 2);
-            }
-        }
-
+        //TODO change to work for 2p
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             // Move the paddle
@@ -206,29 +114,18 @@ namespace BrickBreaker.Screens
             // Moves ball
             ball.Move();
 
-            // Moves powerups
-            MovePowerups(powerUps);
-
-            // Check for collision with powerups and paddle
-            CollidePowerUps(paddle);
-
             // Check for collision with top and side walls
             ball.WallCollision(this);
 
             // Check for collision of ball with paddle, (incl. paddle movement)
-            ticksSinceHit = ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown, ticksSinceHit);       
+            ticksSinceHit = ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown, ticksSinceHit);
 
             // Check if ball has collided with any blocks
-            foreach (Block b in blocks) 
+            foreach (Block b in blocks)
             {
                 if (ball.BlockCollision(b))
-                {   
-                    //decreases struck block hp and removes blocks with hp 0
-                    b.hp--;
-                    if (b.hp == 0)
-                        blocks.Remove(b);
-
-                    GeneratePowerUp(b.x, b.y);
+                {
+                    blocks.Remove(b);
 
                     if (blocks.Count == 0)
                     {
@@ -262,6 +159,104 @@ namespace BrickBreaker.Screens
             Refresh();
         }
 
+        private void GameScreen_KeyUp(object sender, KeyEventArgs e)
+        {
+            //player 1 button releases
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    leftArrowDown = false;
+                    break;
+                case Keys.Down:
+                    downArrowDown = false;
+                    break;
+                case Keys.Right:
+                    rightArrowDown = false;
+                    break;
+                case Keys.Up:
+                    upArrowDown = false;
+                    break;
+                case Keys.Space:
+                    spaceDown = false;
+                    break;
+                default:
+                    break;
+            }
+
+            //added by daniel
+            //player 2
+            switch (e.KeyCode)
+            {
+                case Keys.A:
+                    aKeyDown = true;
+                    break;
+                case Keys.S:
+                    sKeyDown = true;
+                    break;
+                case Keys.D:
+                    dKeyDown = true;
+                    break;
+                case Keys.W:
+                    wKeyDown = true;
+                    break;
+                case Keys.Q:
+                    qKeyDown = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+        private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //player 1 button presses
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    leftArrowDown = true;
+                    break;
+                case Keys.Down:
+                    downArrowDown = true;
+                    break;
+                case Keys.Right:
+                    rightArrowDown = true;
+                    break;
+                case Keys.Up:
+                    upArrowDown = true;
+                    break;
+                case Keys.Space:
+                    spaceDown = true;
+                    break;
+                default:
+                    break;
+            }
+
+            //added by daniel
+            //player 2 button releases
+            switch (e.KeyCode)
+            {
+                case Keys.A:
+                    aKeyDown = false;
+                    break;
+                case Keys.S:
+                    sKeyDown = false;
+                    break;
+                case Keys.D:
+                    dKeyDown = false;
+                    break;
+                case Keys.W:
+                    wKeyDown = false;
+                    break;
+                case Keys.Q:
+                    qKeyDown = false;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
         public void OnEnd()
         {
             // Goes to the game over screen
@@ -285,52 +280,9 @@ namespace BrickBreaker.Screens
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
-            DrawPowerups(e);
-            
             // Draws balls
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
         }
 
-        #region Stefan and Jack's Powerup Methods
-        public void GeneratePowerUp(int brickX, int brickY)
-        {
-            Random n = new Random();
-
-            if (n.Next(0, 1) == 0)
-            {
-                PowerUp p = new PowerUp(brickX, brickY, 3, n.Next(0, 7));
-                powerUps.Add(p);
-            }
-        }
-
-        public void MovePowerups(List<PowerUp> powerUps)
-        {
-            foreach(PowerUp p in powerUps)
-            {
-                p.Move(paddle);
-            }
-        }
-
-        public void DrawPowerups(PaintEventArgs e)
-        {
-            foreach (PowerUp p in powerUps)
-            {
-                p.DrawPowerUp(powerupBrush, e);
-            }
-        }
-
-        public void CollidePowerUps(Paddle paddle)
-        {
-            foreach (PowerUp p in powerUps)
-            {
-                if (p.Collision(paddle) == true)
-                {
-                    powerUps.Remove(p);
-                    activePowerUps.Add(p);
-                    break;
-                }
-            }
-        }
-        #endregion
     }
 }
