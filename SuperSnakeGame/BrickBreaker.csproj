@@ -75,8 +75,7 @@
     <Compile Include="PauseScreen.Designer.cs">
       <DependentUpon>PauseScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="PowerUp.cs" />
-    <Compile Include="PowerUp.cs" />
+
     <Compile Include="PowerUps.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
