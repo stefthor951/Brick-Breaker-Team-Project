@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
-using BrickBreaker.Screens;
+using BrickBreaker;
 
 namespace BrickBreaker.Screens
 {
@@ -49,6 +49,9 @@ namespace BrickBreaker.Screens
 
         public void OnStart()
         {
+            //Resets score
+            Form1.currentScore = 0;
+
             //set life counter
             lives = 3;
 
@@ -164,6 +167,7 @@ namespace BrickBreaker.Screens
             {
                 if (ball.BlockCollision(b))
                 {
+                    Form1.currentScore += 100;
                     blocks.Remove(b);
 
                     if (blocks.Count == 0)
@@ -224,7 +228,6 @@ namespace BrickBreaker.Screens
             // Draws balls
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
 
-            
         }
     }
 }
