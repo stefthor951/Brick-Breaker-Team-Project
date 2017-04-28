@@ -30,7 +30,6 @@ namespace BrickBreaker
 
         //test comment
 
-
         public Form1()
         {
             InitializeComponent();
