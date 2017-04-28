@@ -69,7 +69,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Paddle.cs" />
-    <Compile Include="PowerUp.cs" />
     <Compile Include="PauseScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
