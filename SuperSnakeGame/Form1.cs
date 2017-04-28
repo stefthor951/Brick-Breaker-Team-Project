@@ -47,7 +47,7 @@ namespace BrickBreaker
 
             
             ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) /2);
-            loadHighscores();
+            //loadHighscores();
         }
 
         private void loadHighscores() //method for loading any saved highscores in the highscoreDB xml file
