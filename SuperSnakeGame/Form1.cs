@@ -12,6 +12,17 @@ using System.Windows.Forms;
 using BrickBreaker.Screens;
 using System.Xml;
 
+/// <summary>
+///  Long paddle 
+///  More balls
+///  Backup floor
+///  additional life
+///  double point
+///  magnet
+/// strongball
+/// another comment   
+/// another comment again
+/// </summary>
 namespace BrickBreaker
 {
     public partial class Form1 : Form
@@ -23,7 +34,6 @@ namespace BrickBreaker
         
         //test comment
 
-
         public Form1()
         {
             InitializeComponent();
@@ -34,6 +44,7 @@ namespace BrickBreaker
             // Start the program centred on the Menu Screen
             MenuScreen ps = new MenuScreen();
             this.Controls.Add(ps);
+
             
             ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) /2);
             loadHighscores();
@@ -61,9 +72,9 @@ namespace BrickBreaker
                         //scores.Add(Convert.ToInt16(child.InnerText));
                     }
                 }
-
                 highscoreList.Add(hs);
             }
+
         }
     }
 }

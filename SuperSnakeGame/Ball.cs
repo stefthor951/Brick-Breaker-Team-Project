@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Drawing;
 using BrickBreaker.Screens;
 using System.Windows.Forms;
+//2017-04-26
+
+//test comment
 
 namespace BrickBreaker
 {
@@ -47,60 +50,82 @@ namespace BrickBreaker
 
                 if (y <= (b.y + b.height))
                     ySpeed = -ySpeed;
+
             }
 
             return blockRec.IntersectsWith(ballRec);         
         }
 
-        public void PaddleCollision(Paddle p, bool pMovingLeft, bool pMovingRight)
+        public int PaddleCollision(Paddle p, bool pMovingLeft, bool pMovingRight, int ticksSinceHit)
         {
             Rectangle ballRec = new Rectangle(x, y, size, size);
             Rectangle paddleRec = new Rectangle(p.x, p.y, p.width, p.height);
 
-            if (ballRec.IntersectsWith(paddleRec))
+            ticksSinceHit++;
+
+            if (ballRec.IntersectsWith(paddleRec) && ticksSinceHit >= 60)
             {
                 if (y + size >= p.y)
                 {
-                    // If the ball 
-                    if ((x) < p.x && (y + size) > p.y)
+                    if ((x + size) < p.x && (y + size) > p.y)
                     {
                         xSpeed = -Math.Abs(xSpeed);
                         ySpeed = Math.Abs(ySpeed);
+
                     }
-                    else if (x + size > (p.x + p.width) && (y + size) > p.y)
+                    else if (x > (p.x + p.width) && (y + size) > p.y)
                     {
                         xSpeed = Math.Abs(xSpeed);
-                        ySpeed = -Math.Abs(ySpeed);
+                        ySpeed = Math.Abs(ySpeed);
+
                     }
                     else
                     {
                         ySpeed *= -1;
-                    }
+                    }                   
                 }
 
                 if (pMovingLeft)
                     xSpeed = -Math.Abs(xSpeed);
                 else if (pMovingRight)
                     xSpeed = Math.Abs(xSpeed);
+
+                //returns 0 if collision occurs, resetting the number of ticks since the last collision
+                return 0;             
             }
+
+            //returns the same value entered if no collision
+            return ticksSinceHit;
         }
 
         public void WallCollision(UserControl UC)
         {
             // Collision with left wall
             if (x <= 0)
-            {
+            {   
                 xSpeed *= -1;
+
+                //corrects wall sticking glitch
+                if (xSpeed < 0)
+                    xSpeed = Math.Abs(xSpeed); 
             }
             // Collision with right wall
             if (x >= (UC.Width - size))
-            {
+            {             
                 xSpeed *= -1;
+
+                //corrects wall sticking glitch
+                if (xSpeed > 0)
+                    xSpeed = -Math.Abs(xSpeed); 
             }
             // Collision with top wall
             if (y <= 2)
-            {
+            {   
                 ySpeed *= -1;
+
+                //corrects wall sticking glitch
+                if (ySpeed < 0)
+                    ySpeed = Math.Abs(ySpeed); 
             }
         }
 
