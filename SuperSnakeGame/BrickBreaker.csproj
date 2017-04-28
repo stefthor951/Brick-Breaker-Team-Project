@@ -68,6 +68,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Highscore.cs" />
     <Compile Include="Paddle.cs" />
     <Compile Include="PauseScreen.cs">
       <SubType>UserControl</SubType>

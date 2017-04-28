@@ -12,9 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
-/// <summary>
-/// stefan andrekovic
-/// </summary>
+using BrickBreaker;
+
 namespace BrickBreaker.Screens
 {
     public partial class GameScreen : UserControl
@@ -55,6 +54,9 @@ namespace BrickBreaker.Screens
 
         public void OnStart()
         {
+            //Resets score
+            Form1.currentScore = 0;
+
             //set life counter
             lives = 3;
 
@@ -222,12 +224,15 @@ namespace BrickBreaker.Screens
             foreach (Block b in blocks) 
             {
                 if (ball.BlockCollision(b))
+
                 {   
                     //decreases struck block hp and removes blocks with hp 0
                     b.hp--;
                     if (b.hp == 0)
                         blocks.Remove(b);
-
+                     
+                     Form1.currentScore += 100;
+                     
                     GeneratePowerUp(b.x, b.y);
 
                     if (blocks.Count == 0)
@@ -289,6 +294,7 @@ namespace BrickBreaker.Screens
             
             // Draws balls
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+
         }
 
         #region Stefan and Jack's Powerup Methods
