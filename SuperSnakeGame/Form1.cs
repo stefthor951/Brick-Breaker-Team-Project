@@ -8,18 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrickBreaker.Screens;
+
 /// <summary>
-/// stefan andrekovic
-/// 
-/// powerups
-///     long paddle
-///     multiball
-///     backup floor
-///     lives
-///     
-/// powerdowns(?)
-///     brick enhancer
-///     
+///  Long paddle 
+///  More balls
+///  Backup floor
+///  additional life
+///  double point
+///  magnet
+/// strongball
+/// another comment   
+/// another comment again
 /// </summary>
 namespace BrickBreaker
 {
@@ -41,7 +40,7 @@ namespace BrickBreaker
             MenuScreen ps = new MenuScreen();
             this.Controls.Add(ps);
 
-            ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) /2);
+            ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) /2);            
         }
     }
 }
