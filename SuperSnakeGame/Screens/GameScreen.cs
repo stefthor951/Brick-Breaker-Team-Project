@@ -23,7 +23,7 @@ namespace BrickBreaker.Screens
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown, escapeDown;
 
         // Game values
-        int lives;
+        int lives, ticksSinceHit;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -51,6 +51,9 @@ namespace BrickBreaker.Screens
         {
             //set life counter
             lives = 3;
+
+            //sets ticks since paddle hit to initialize at zero
+            ticksSinceHit = 100;
 
             //set all button presses to false.
             leftArrowDown = downArrowDown = rightArrowDown = upArrowDown = false;
@@ -201,7 +204,7 @@ namespace BrickBreaker.Screens
             ball.WallCollision(this);
 
             // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown);
+            ticksSinceHit = ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown, ticksSinceHit);       
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks) 

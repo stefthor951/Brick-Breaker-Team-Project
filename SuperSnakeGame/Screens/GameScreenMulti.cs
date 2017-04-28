@@ -26,7 +26,7 @@ namespace SuperSnakeGame.Screens
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
 
         // Game values
-        int lives;
+        int lives, ticksSinceHit;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -59,6 +59,9 @@ namespace SuperSnakeGame.Screens
         {
             //set life counter
             lives = 3;
+
+            //initializes ticks since hit counter
+            ticksSinceHit = 10;
 
             //set all button presses to false.
             leftArrowDown = downArrowDown = rightArrowDown = upArrowDown = false;
@@ -115,7 +118,7 @@ namespace SuperSnakeGame.Screens
             ball.WallCollision(this);
 
             // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown);
+            ticksSinceHit = ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown, ticksSinceHit);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
