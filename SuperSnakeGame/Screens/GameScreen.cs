@@ -20,7 +20,7 @@ namespace BrickBreaker.Screens
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
-        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
+        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown, escapeDown;
 
         // Game values
         int lives;
@@ -108,6 +108,9 @@ namespace BrickBreaker.Screens
                 case Keys.Space:
                     spaceDown = false;
                     break;
+                case Keys.Escape:
+                    escapeDown = false;
+                    break;
                 default:
                     break;
             }
@@ -132,6 +135,10 @@ namespace BrickBreaker.Screens
                     break;
                 case Keys.Space:
                     spaceDown = true;
+                    break;
+                case Keys.Escape:
+                    escapeDown = true;
+                    manuel();
                     break;
                 default:
                     break;
@@ -158,6 +165,21 @@ namespace BrickBreaker.Screens
                     break;
             }
 
+        }
+
+        public void manuel()
+        {
+            if (escapeDown == true)
+            {
+                gameTimer.Stop();
+
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+
+                PauseScreen ps = new PauseScreen();
+                f.Controls.Add(ps);
+                ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) / 2);
+            }
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
