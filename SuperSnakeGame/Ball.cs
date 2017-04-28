@@ -85,16 +85,13 @@ namespace BrickBreaker
                     }                   
                 }
 
-                //returns 0 if collision occurs, resetting the number of ticks since the last collision
-                return 0;
-
                 if (pMovingLeft)
                     xSpeed = -Math.Abs(xSpeed);
                 else if (pMovingRight)
                     xSpeed = Math.Abs(xSpeed);
 
-
-
+                //returns 0 if collision occurs, resetting the number of ticks since the last collision
+                return 0;             
             }
 
             //returns the same value entered if no collision
